@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>天天学农</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <header></header>
-    <main id="divF"></main>
+    <main>
+        <div id="divF"></div>
+    </main>
     <footer></footer>
     <script>
         var keys = {
@@ -17,7 +20,7 @@
         }
 
         index = 0
-        while(index < keys['length']){
+        while(index < keys.length){
             div1 = document.createElement('div')
             divF.appendChild(div1)
             row = keys[index]

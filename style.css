@@ -1,1 +1,24 @@
-style.css
+*{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+main{
+    text-align: center;
+}
+
+#divF{
+    display: inline-block;
+    vertical-align: top;
+}
+
+kbd{
+    border: 1px solid red;
+    display: inline-block;
+    padding: 10px;
+    margin: 2px;
+}
