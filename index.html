@@ -11,20 +11,21 @@
     <script>
         var keys = {
             '0':['q','w','e','r','t','y','u','i','o','p'],
-            '1':['a','s','d,','f','g','h','j','k','l'],
+            '1':['a','s','d','f','g','h','j','k','l'],
             '2':['z','x','c','v','b','n','m'],
             'length':3
         }
+
         index = 0
-        while (index < keys['length']){
+        while(index < keys['length']){
             div1 = document.createElement('div')
             divF.appendChild(div1)
             row = keys[index]
             index2 = 0
-            while (index2 < row.length){
+            while(index2 < row.length){
                 kbd1 = document.createElement('kbd')
                 div1.appendChild(kbd1)
-                kbd1.textContent(rowp[index2])
+                kbd1.textContent  = row[index2]
                 index2 = index2 + 1
             }
             index = index + 1    
