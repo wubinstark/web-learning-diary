@@ -58,18 +58,31 @@
             index2 = 0
             while (index2 < row.length) {
                 kbd1 = document.createElement('kbd')
-                div1.appendChild(kbd1)
                 kbd1.textContent = row[index2]
+                button1 = document.createElement("button")
+                button1.textContent = '编辑'
+                button1.id = row[index2]
+
+                button1.onclick = function (editer) {
+                    key = editer['target']['id']
+                    p = prompt('请输入一个网址')
+                    hash[key] = p
+                }
+
+                kbd1.appendChild(button1)
+                div1.appendChild(kbd1)
                 index2 = index2 + 1
             }
             index = index + 1
-
-            document.onkeypress = function (kekeke) {
-                key = kekeke['key']
-                window.open('https://' + hash[key], '_blank')
-            }
-
         }
+
+
+        document.onkeypress = function (kekeke) {
+            key = kekeke['key']
+            window.open('https://' + hash[key], '_blank')
+        }
+
+
 
 
     </script>
