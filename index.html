@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
+
 <head>
     <meta charset="UTF-8">
     <title>天天学农</title>
     <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
     <header></header>
     <main>
@@ -13,29 +15,64 @@
     <footer></footer>
     <script>
         var keys = {
-            '0':['q','w','e','r','t','y','u','i','o','p'],
-            '1':['a','s','d','f','g','h','j','k','l'],
-            '2':['z','x','c','v','b','n','m'],
-            'length':3
+            '0': ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+            '1': ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+            '2': ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
+            'length': 3
+        }
+
+        var hash = {
+            'a': 'amazon.com',
+            'b': 'baidu.com',
+            'c': 'iciba.com',
+            'd': 'baidu.com',
+            'e': 'ele.me',
+            'f': 'fullbook.cn',
+            'g': 'google.com',
+            'h': '',
+            'i': 'iciba.com',
+            'j': '',
+            'k': '',
+            'l': '',
+            'm': '',
+            'n': '',
+            'o': '',
+            'p': '',
+            'q': '',
+            'r': '',
+            's': '',
+            't': '',
+            'u': '',
+            'v': '',
+            'w': '',
+            'k': '',
+            'y': '',
+            'z': ''
         }
 
         index = 0
-        while(index < keys.length){
+        while (index < keys.length) {
             div1 = document.createElement('div')
             divF.appendChild(div1)
             row = keys[index]
             index2 = 0
-            while(index2 < row.length){
+            while (index2 < row.length) {
                 kbd1 = document.createElement('kbd')
                 div1.appendChild(kbd1)
-                kbd1.textContent  = row[index2]
+                kbd1.textContent = row[index2]
                 index2 = index2 + 1
             }
-            index = index + 1    
-            
+            index = index + 1
+
+            document.onkeypress = function (kekeke) {
+                key = kekeke['key']
+                window.open('https://' + hash[key], '_blank')
+            }
+
         }
-        
+
 
     </script>
 </body>
+
 </html>
