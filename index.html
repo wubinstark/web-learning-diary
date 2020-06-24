@@ -1,90 +1,77 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>天天学农</title>
-    <link rel="stylesheet" href="./style.css">
+    <title>键盘映射</title>
 </head>
 
 <body>
-    <header></header>
+    <nav></nav>
     <main>
-        <div id="divF"></div>
+        <div id="keyboardRowDiv"></div>
     </main>
     <footer></footer>
+
     <script>
-        var keys = {
+        keys = {
             '0': ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
             '1': ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
             '2': ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
             'length': 3
         }
 
-        var hash = {
-            'a': 'amazon.com',
-            'b': 'baidu.com',
-            'c': 'iciba.com',
-            'd': 'baidu.com',
+        hash = {
+            'q': 'qq.com',
+            'w': 'weibo.com',
             'e': 'ele.me',
-            'f': 'fullbook.cn',
-            'g': 'google.com',
+            'r': '',
+            't': '',
+            'y': '',
+            'u': '',
+            'i': '',
+            'o': '',
+            'p': '',
+            'a': '',
+            's': '',
+            'd': '',
+            'f': '',
+            'g': '',
             'h': '',
-            'i': 'iciba.com',
             'j': '',
             'k': '',
             'l': '',
-            'm': '',
-            'n': '',
-            'o': '',
-            'p': '',
-            'q': '',
-            'r': '',
-            's': '',
-            't': '',
-            'u': '',
+            'z': '',
+            'x': '',
+            'c': '',
             'v': '',
-            'w': '',
-            'k': '',
-            'y': '',
-            'z': ''
+            'b': '',
+            'n': '',
+            'm': ''
         }
 
+        // 设置一个本地存储，用来存储刷新之后的页面
+        var hashLocalStorage = localStorage.getItem('')
+
+        // 遍历keys，生成三个div
         index = 0
-        while (index < keys.length) {
-            div1 = document.createElement('div')
-            divF.appendChild(div1)
-            row = keys[index]
+        while (index < keys['length']) {
+            keyboardRow = document.createElement('div')
+            keyboardRowDiv.append(keyboardRow)
+            
+            // 遍历每一行的按键
             index2 = 0
-            while (index2 < row.length) {
-                kbd1 = document.createElement('kbd')
-                kbd1.textContent = row[index2]
-                button1 = document.createElement("button")
-                button1.textContent = '编辑'
-                button1.id = row[index2]
-
-                button1.onclick = function (editer) {
-                    key = editer['target']['id']
-                    p = prompt('请输入一个网址')
-                    hash[key] = p
-                }
-
-                kbd1.appendChild(button1)
-                div1.appendChild(kbd1)
-                index2 = index2 + 1
+            row = keyboardRow[index]
+            while (index2<row.length) {
+                
             }
+
+
+
             index = index + 1
         }
 
-
-        document.onkeypress = function (kekeke) {
-            key = kekeke['key']
-            window.open('https://' + hash[key], '_blank')
-        }
-
-
-
-
+        // 遍历hash，将填充每一个div
     </script>
 </body>
 

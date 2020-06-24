@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <title>天天学农</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <header></header>
+    <main>
+        <div id="divF"></div>
+    </main>
+    <footer></footer>
+    <script>
+        var keys = {
+            '0': ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+            '1': ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+            '2': ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
+            'length': 3
+        }
+
+        var hash = {
+            'a': 'amazon.com',
+            'b': 'baidu.com',
+            'c': 'iciba.com',
+            'd': 'baidu.com',
+            'e': 'ele.me',
+            'f': 'fullbook.cn',
+            'g': 'google.com',
+            'h': '',
+            'i': 'iciba.com',
+            'j': '',
+            'k': '',
+            'l': '',
+            'm': '',
+            'n': '',
+            'o': '',
+            'p': '',
+            'q': '',
+            'r': '',
+            's': '',
+            't': '',
+            'u': '',
+            'v': '',
+            'w': '',
+            'k': '',
+            'y': '',
+            'z': ''
+        }
+
+        // 定义一个本地存储，用来存储编辑后的键盘映射的网址
+        var hashLoccalStorage = JSON.parse(localStorage.getItem('uuu') || 'null')
+        
+        // 如果有本地存储的话，就将本地存储覆盖刷新后的hash
+        if(hashLoccalStorage){
+            hash = hashLoccalStorage
+        }
+
+        // 遍历三行键盘，生成三个div
+        index = 0
+        while (index < keys.length) {
+            div1 = document.createElement('div')
+            divF.appendChild(div1)
+            row = keys[index]
+            index2 = 0
+            // 遍历键盘上的每一行键盘中的kbd（keyboard）
+            while (index2 < row.length) {
+                kbd1 = document.createElement('kbd')
+                kbd1.textContent = row[index2]
+                button1 = document.createElement("button")
+                button1.textContent = '编辑'
+                button1.id = row[index2]
+                
+                button1.onclick = function (editer) {
+                    key = editer['target']['id']
+                    p = prompt('请输入一个网址')
+                    hash[key] = p
+                    localStorage.setItem('uuu', JSON.stringify(hash))
+
+                }
+
+                kbd1.appendChild(button1)
+                div1.appendChild(kbd1)
+                index2 = index2 + 1
+            }
+            index = index + 1
+        }
+
+
+        document.onkeypress = function (kekeke) {
+            key = kekeke['key']
+            window.open('https://' + hash[key], '_blank')
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
