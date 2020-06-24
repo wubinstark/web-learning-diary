@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>键盘映射</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <nav></nav>
     <main>
-        <div id="keyboardRowDiv"></div>
+        <div id="divF"></div>
     </main>
     <footer></footer>
 
@@ -51,27 +52,46 @@
         }
 
         // 设置一个本地存储，用来存储刷新之后的页面
-        var hashLocalStorage = localStorage.getItem('')
-
+        var hashLocalStorage = localStorage.getItem('zzz' || 'null')
+        if (hashLocalStorage) {
+            hash = hashLocalStorage
+        }
         // 遍历keys，生成三个div
         index = 0
         while (index < keys['length']) {
             keyboardRow = document.createElement('div')
-            keyboardRowDiv.append(keyboardRow)
-            
+            divF.appendChild(keyboardRow)
+
             // 遍历每一行的按键
             index2 = 0
-            row = keyboardRow[index]
-            while (index2<row.length) {
-                
+            row = keys[index]
+            while (index2 < row.length) {
+                kbd1 = document.createElement('kbd')
+                kbd1.textContent = row[index2]
+                button1 = document.createElement('button')
+                button1.textContent = '编辑'
+
+                // 兼听用户的鼠标点击事件，以用于用户修改按键
+                button1.onclick = function (keypress) {
+                    console.log(keypress)
+                }
+
+                kbd1.appendChild(button1)
+                keyboardRow.appendChild(kbd1)
+                index2 = index2 + 1
             }
-
-
-
             index = index + 1
         }
 
-        // 遍历hash，将填充每一个div
+        // 兼听整个界面（docment）用户的键盘输入
+        document.onkeypress = function (keypress) {
+            key = keypress.key
+            website = hash[key]
+            url  = window.open('https://' + website,'_blank')
+
+        }
+
+
     </script>
 </body>
 
