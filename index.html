@@ -88,10 +88,11 @@
             index = index + 1
         }
 
-
+        // 兼听键盘事件，获取用户按键信息
         document.onkeypress = function (kekeke) {
             key = kekeke['key']
             window.open ('https://' + hash[key])
+
         }
 
 
