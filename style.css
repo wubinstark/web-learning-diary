@@ -1,3 +1,9 @@
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -42,7 +48,9 @@ kbd:hover button{
     border-radius: 8px;
     padding: 0 12px;
     line-height: 69px;
-    float: left;
+    float: flex;
+    justify-items: center;
+    align-items: center;
     position: relative;
     margin: 0 12px 12px 0;
     background-color: #000;
