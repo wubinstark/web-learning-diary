@@ -71,9 +71,11 @@
                 kbd1 = document.createElement('kbd')
                 kbd1.className = 'key'
                 kbd1.textContent = row[index2]
+
                 button1 = document.createElement("button")
                 button1.textContent = '编辑'
                 button1.id = row[index2]
+                
 
                 button1.onclick = function (editer) {
                     key = editer['target']['id']
