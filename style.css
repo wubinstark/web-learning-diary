@@ -14,6 +14,7 @@ a{
 }
 
 body{
+    background: url(),gray ,center,center,no-repeat;
 }
 
 main{
@@ -22,6 +23,7 @@ main{
     justify-content: center;
     align-items: center;
     height: 100vh;
+
 }
 
 #divF{
