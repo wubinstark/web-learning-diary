@@ -38,7 +38,7 @@
             'n': '',
             'o': '',
             'p': '',
-            'q': '',
+            'q': 'qq.com',
             'r': '',
             's': '',
             't': '',
@@ -75,6 +75,9 @@
                 button1 = document.createElement("button")
                 button1.textContent = '编辑'
                 button1.id = row[index2]
+
+                img = document.createElement('img')
+                img.src = 'https://www.'+ hash[row[index2]]+'/favicon.ico'
                 
 
                 button1.onclick = function (editer) {
@@ -84,7 +87,7 @@
                     localStorage.setItem('uuu', JSON.stringify(hash))
 
                 }
-
+                kbd1.appendChild(img)
                 kbd1.appendChild(button1)
                 div1.appendChild(kbd1)
                 index2 = index2 + 1

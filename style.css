@@ -57,9 +57,6 @@ kbd:hover button{
     border-radius: 8px;
     padding: 0 12px;
     line-height: 69px;
-    float: flex;
-    justify-items: center;
-    align-items: center;
     position: relative;
     margin: 0 12px 12px 0;
     background-color: #000;
@@ -76,3 +73,10 @@ mian key-link{
     vertical-align: top;
 }
 
+main kbd img{
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 5px;
+    bottom: 5px;
+}
