@@ -77,13 +77,27 @@
                 button1.id = row[index2]
 
                 img = document.createElement('img')
-                img.src = 'https://www.'+ hash[row[index2]]+'/favicon.ico'
+                if (hash[row[index2]]) {
+                    img.src = 'https://www.'+ hash[row[index2]]+'/favicon.ico'
+                    
+                }else{
+                    img.src = 'https://i.loli.net/2020/07/09/7f8eWhlHacOTPBY.png'
+                } 
+
+                img.onerror = function (errorTarget) {
+                    console.log(errorTarget.target)
+                    errorTarget.target.src =  'https://i.loli.net/2020/07/09/7f8eWhlHacOTPBY.png'
+                } 
                 
 
                 button1.onclick = function (editer) {
                     key = editer['target']['id']
                     p = prompt('请输入一个网址')
                     hash[key] = p
+                    editer['target'].previousSibling.src = 'https://www.'+ p +'/favicon.ico'
+                    img.onerror = function (errorTarget) {
+                        errorTarget.target.src =  'https://i.loli.net/2020/07/09/7f8eWhlHacOTPBY.png'
+                    } 
                     localStorage.setItem('uuu', JSON.stringify(hash))
 
                 }
