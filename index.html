@@ -60,23 +60,23 @@
         // 遍历三行键盘，生成三个div
         var index = 0
         while (index < keys.length) {
-            var div1 = document.createElement('div')
+            var div1 = createTag('div')
             div1.className = 'clearfix'
             div1.className = 'div'
-            var divF.appendChild(div1)
+            divF.appendChild(div1)
             var row = keys[index]
             var index2 = 0
             // 遍历键盘上的每一行键盘中的kbd（keyboard）
             while (index2 < row.length) {
-                var kbd1 = document.createElement('kbd')
+                var kbd1 = createTag('kbd')
                 kbd1.className = 'key'
                 kbd1.textContent = row[index2]
 
-                var button1 = document.createElement("button")
+                var button1 = createTag("button")
                 button1.textContent = '编辑'
                 button1.id = row[index2]
 
-                var img = document.createElement('img')
+                var img = createTag('img')
                 if (hash[row[index2]]) {
                     img.src = 'https://www.'+ hash[row[index2]]+'/favicon.ico'
                     
@@ -117,7 +117,10 @@
         }
         
         // 学习JavaScript语法要去javascript.ruanyifeng.com
-
+        function createTag(tagName) {
+            var element = document.createElement(tagName)
+            return element
+        }
 
 
     </script>
