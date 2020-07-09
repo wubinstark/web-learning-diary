@@ -58,25 +58,25 @@
         }
 
         // 遍历三行键盘，生成三个div
-        index = 0
+        var index = 0
         while (index < keys.length) {
-            div1 = document.createElement('div')
+            var div1 = document.createElement('div')
             div1.className = 'clearfix'
             div1.className = 'div'
-            divF.appendChild(div1)
-            row = keys[index]
-            index2 = 0
+            var divF.appendChild(div1)
+            var row = keys[index]
+            var index2 = 0
             // 遍历键盘上的每一行键盘中的kbd（keyboard）
             while (index2 < row.length) {
-                kbd1 = document.createElement('kbd')
+                var kbd1 = document.createElement('kbd')
                 kbd1.className = 'key'
                 kbd1.textContent = row[index2]
 
-                button1 = document.createElement("button")
+                var button1 = document.createElement("button")
                 button1.textContent = '编辑'
                 button1.id = row[index2]
 
-                img = document.createElement('img')
+                var img = document.createElement('img')
                 if (hash[row[index2]]) {
                     img.src = 'https://www.'+ hash[row[index2]]+'/favicon.ico'
                     
@@ -91,8 +91,8 @@
                 
 
                 button1.onclick = function (editer) {
-                    key = editer['target']['id']
-                    p = prompt('请输入一个网址')
+                    var key = editer['target']['id']
+                    var p = prompt('请输入一个网址')
                     hash[key] = p
                     editer['target'].previousSibling.src = 'https://www.'+ p +'/favicon.ico'
                     img.onerror = function (errorTarget) {
@@ -111,7 +111,7 @@
 
         // 兼听键盘事件，获取用户按键信息
         document.onkeypress = function (kekeke) {
-            key = kekeke['key']
+            var key = kekeke['key']
             window.open ('https://' + hash[key])
 
         }
