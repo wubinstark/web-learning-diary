@@ -14,114 +14,154 @@
     </main>
     <footer></footer>
     <script>
-        var keys = {
-            '0': ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-            '1': ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
-            '2': ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
-            'length': 3
-        }
+        // 1、生成键盘所需的二维数组
+        var Data =createData() 
+        var keys = Data["keys"]
+        var hash = Data["hash"]
 
-        var hash = {
-            'a': 'amazon.com',
-            'b': 'baidu.com',
-            'c': 'iciba.com',
-            'd': 'baidu.com',
-            'e': 'ele.me',
-            'f': 'fullbook.cn',
-            'g': 'google.com',
-            'h': '',
-            'i': 'iciba.com',
-            'j': '',
-            'k': '',
-            'l': '',
-            'm': '',
-            'n': '',
-            'o': '',
-            'p': '',
-            'q': 'qq.com',
-            'r': '',
-            's': '',
-            't': '',
-            'u': '',
-            'v': '',
-            'w': '',
-            'y': '',
-            'z': ''
-        }
+        // 2、生成键盘
+        createKeyboard(keys,hash)
 
-        // 定义一个本地存储，用来存储编辑后的键盘映射的网址
-        var hashLoccalStorage = JSON.parse(localStorage.getItem('uuu') || 'null')
+        // 3、兼听键盘事件，获取用户按键信息
+        listenToUser(hash)
 
-        // 如果有本地存储的话，就将本地存储覆盖刷新后的hash
-        if (hashLoccalStorage) {
-            hash = hashLoccalStorage
-        }
+        // 下面为私有函数封装
 
-        // 遍历三行键盘，生成三个div
-        var index = 0
-        while (index < keys.length) {
-            var div1 = createTag('div')
-            div1.className = 'clearfix'
-            div1.className = 'div'
-            divF.appendChild(div1)
-            var row = keys[index]
-            var index2 = 0
-            // 遍历键盘上的每一行键盘中的kbd（keyboard）
-            while (index2 < row.length) {
-                var kbd1 = createTag('kbd')
-                kbd1.className = 'key'
-                kbd1.textContent = row[index2]
-
-                var button1 = createTag("button")
-                button1.textContent = '编辑'
-                button1.id = row[index2]
-
-                var img = createTag('img')
-                if (hash[row[index2]]) {
-                    img.src = 'https://www.'+ hash[row[index2]]+'/favicon.ico'
-                    
-                }else{
-                    img.src = 'https://i.loli.net/2020/07/09/7f8eWhlHacOTPBY.png'
-                } 
-
-                img.onerror = function (errorTarget) {
-                    console.log(errorTarget.target)
-                    errorTarget.target.src =  'https://i.loli.net/2020/07/09/7f8eWhlHacOTPBY.png'
-                } 
-                
-
-                button1.onclick = function (editer) {
-                    var key = editer['target']['id']
-                    var p = prompt('请输入一个网址')
-                    hash[key] = p
-                    editer['target'].previousSibling.src = 'https://www.'+ p +'/favicon.ico'
-                    img.onerror = function (errorTarget) {
-                        errorTarget.target.src =  'https://i.loli.net/2020/07/09/7f8eWhlHacOTPBY.png'
-                    } 
-                    localStorage.setItem('uuu', JSON.stringify(hash))
-
-                }
-                kbd1.appendChild(img)
-                kbd1.appendChild(button1)
-                div1.appendChild(kbd1)
-                index2 = index2 + 1
+        // 创建键盘数据源
+        function createData() {
+            var keys = {
+                '0': ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+                '1': ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+                '2': ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
+                'length': 3
             }
-            index = index + 1
+
+            var hash = {
+                'a': 'amazon.com',
+                'b': 'baidu.com',
+                'c': 'iciba.com',
+                'd': 'baidu.com',
+                'e': 'ele.me',
+                'f': 'fullbook.cn',
+                'g': 'google.com',
+                'h': '',
+                'i': 'iciba.com',
+                'j': '',
+                'k': '',
+                'l': '',
+                'm': '',
+                'n': '',
+                'o': '',
+                'p': '',
+                'q': 'qq.com',
+                'r': '',
+                's': '',
+                't': '',
+                'u': '',
+                'v': '',
+                'w': '',
+                'y': '',
+                'z': ''
+            }
+
+            // 定义一个本地存储，用来存储编辑后的键盘映射的网址
+            var hashLoccalStorage = JSON.parse(localStorage.getItem('uuu') || 'null')
+
+            // 如果有本地存储的话，就将本地存储覆盖刷新后的hash
+            if (hashLoccalStorage) {
+                hash = hashLoccalStorage
+            }
+
+            return {
+                "keys":keys,
+                "hash":hash
+            }
         }
 
-        // 兼听键盘事件，获取用户按键信息
-        document.onkeypress = function (kekeke) {
-            var key = kekeke['key']
-            window.open ('https://' + hash[key])
+        // 创建键盘
+        function createKeyboard(keys,hash) {
+            var index = 0
+            while (index < keys.length) {
+                var div1 = createTag('div')
+                div1.className = 'clearfix'
+                div1.className = 'div'
+                divF.appendChild(div1)
+                var row = keys[index]
+                var index2 = 0
+                // 遍历键盘上的每一行键盘中的kbd（keyboard）
+                while (index2 < row.length) {
+                    var kbd1 = createKbd(row[index2])
 
+                    var button1 = createButton(row[index2])
+
+                    var img = createImg(hash[row[index2]])
+                    
+                    kbd1.appendChild(img)
+                    kbd1.appendChild(button1)
+                    div1.appendChild(kbd1)
+                    index2 = index2 + 1
+                }
+                index = index + 1
+            }
         }
-        
-        // 学习JavaScript语法要去javascript.ruanyifeng.com
+
+        // 创建标签函数
         function createTag(tagName) {
             var element = document.createElement(tagName)
             return element
         }
 
+        // 创建键盘
+        function createKbd(textContent) {
+            var kbd1 = createTag('kbd')
+            kbd1.className = 'key'
+            kbd1.textContent = textContent
+            return kbd1
+        }
+        
+        // 创建编辑按钮
+        function createButton(id) {
+            var button1 = createTag("button")
+            button1.textContent = '编辑'
+            button1.id = id
+            button1.onclick = function (editer) {
+                var key = editer['target']['id']
+                var p = prompt('请输入一个网址')
+                hash[key] = p
+                editer['target'].previousSibling.src = 'https://www.'+ p +'/favicon.ico'
+                img.onerror = function (errorTarget) {
+                    errorTarget.target.src =  'https://i.loli.net/2020/07/09/7f8eWhlHacOTPBY.png'
+                } 
+                localStorage.setItem('uuu', JSON.stringify(hash))
+
+            }
+            return button1
+        }
+
+        // 创建按键图标
+        function createImg(domain) {
+            var img = createTag('img')
+            if (domain) {
+                img.src = 'https://www.'+ domain+'/favicon.ico'
+            
+            }else{
+                img.src = 'https://i.loli.net/2020/07/09/7f8eWhlHacOTPBY.png'
+            } 
+            img.onerror = function (errorTarget) {
+                console.log(errorTarget.target)
+                errorTarget.target.src =  'https://i.loli.net/2020/07/09/7f8eWhlHacOTPBY.png'
+            } 
+            return img
+        }
+
+        // 兼听用户动作
+        function listenToUser(hash) {
+            document.onkeypress = function (kekeke) {
+                var key = kekeke['key']
+                window.open ('https://' + hash[key])
+
+            }
+        }
 
     </script>
 </body>
