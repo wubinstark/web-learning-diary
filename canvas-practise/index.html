@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div id="can"></div>
+    <script>
+        var cany = document.getElementById('can')
+        var painting = false
+        var x, y
+        // 按下鼠标
+        cany.onmousedown = function (mouseDown) {
+            x = mouseDown.clientX
+            y = mouseDown.clientY
+            hua = document.createElement('div')
+            hua.className = 'canvas'
+            hua.style = 'left:'+(x-3)+'px ;top:'+(y-3)+'px'
+            cany.appendChild(hua)
+            painting = true
+        }
+        // 移动鼠标
+        cany.onmousemove = function (mouseMove) {
+            if (painting) {
+                x = mouseMove.clientX
+                y = mouseMove.clientY
+                hua = document.createElement('div')
+                hua.className = 'canvas'
+                hua.style = 'left:'+(x-3)+'px ;top:'+(y-3)+'px'
+                cany.appendChild(hua)
+            } else { }
+        }
+
+        // 松开鼠标
+        cany.onmouseup = function (mouseUp) {
+            painting = false
+        }
+
+    </script>
+</body>
+
+</html>
