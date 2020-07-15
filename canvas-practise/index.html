@@ -9,37 +9,14 @@
 </head>
 
 <body>
-    <div id="can"></div>
-    <script>
-        var cany = document.getElementById('can')
-        var painting = false
-        var x, y
-        // 按下鼠标
-        cany.onmousedown = function (mouseDown) {
-            x = mouseDown.clientX
-            y = mouseDown.clientY
-            hua = document.createElement('div')
-            hua.className = 'canvas'
-            hua.style = 'left:'+(x-3)+'px ;top:'+(y-3)+'px'
-            cany.appendChild(hua)
-            painting = true
-        }
-        // 移动鼠标
-        cany.onmousemove = function (mouseMove) {
-            if (painting) {
-                x = mouseMove.clientX
-                y = mouseMove.clientY
-                hua = document.createElement('div')
-                hua.className = 'canvas'
-                hua.style = 'left:'+(x-3)+'px ;top:'+(y-3)+'px'
-                cany.appendChild(hua)
-            } else { }
-        }
+    <canvas id="can" width="300px" height = "300px"></canvas>
 
-        // 松开鼠标
-        cany.onmouseup = function (mouseUp) {
-            painting = false
-        }
+    <script>
+        var can = document.getElementById('can')
+        var context = can.getContext('2d')
+
+        context.fillStyle ='green'
+        context.fillRect(10,10,100,150)
 
     </script>
 </body>

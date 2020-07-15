@@ -1,15 +1,4 @@
-#can{
-    width: 300px;
-    height: 300px;
+body #can{
     background-color: aqua;
-    position: relative;
-}
-
-body #can .canvas{
-    width: 6px;
-    height: 6px;
-    background-color: black;
-    border-radius: 50px;
-    position: absolute;
     
 }
