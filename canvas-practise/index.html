@@ -9,12 +9,63 @@
 </head>
 
 <body>
-    <canvas id="can" width="300px" height = "300px"></canvas>
+<canvas id="can" width="300px" height="300px"></canvas>
 
-    <script>
-        const can = document.getElementById('can');
+<script>
+    const can = document.getElementById('can');
+    let painting = false;
+    var lastPoint = {"x": undefined, "y": undefined}
+    const context = can.getContext('2d');
+    context.fillStyle = 'green'
+    context.strokeStyle = 'green'
 
-    </script>
+    //按下鼠标
+    document.onmousedown = function (mousedown) {
+        painting = true
+        var x = mousedown.clientX
+        var y = mousedown.clientY
+        lastPoint = {"x": x, "y": y}
+        drawcircle(x, y, 3)
+    }
+
+    // 移动鼠标
+    document.onmousemove = function (mousemove) {
+        var newPoint;
+        if (painting) {
+            var x = mousemove.clientX
+            var y = mousemove.clientY
+            newPoint = {"x": x, "y": y}
+            drawcircle(x, y, 1)
+            connectPoint(lastPoint["x"], lastPoint["y"], newPoint["x"], newPoint["y"])
+            lastPoint = newPoint
+
+        }
+
+    }
+
+    // 松开鼠标
+    document.onmouseup = function (mouseup) {
+        painting = false
+        console.log('over')
+    }
+
+    //以下是私有函数
+    function drawcircle(x, y, radius) {
+        context.beginPath()
+        context.arc(x, y, radius, 0, Math.PI * 2)
+        context.fill()
+    }
+    
+    function connectPoint(x1,y1,x2,y2) {
+        context.beginPath()
+        context.lineWidth = 6
+        context.moveTo(x1,y1)
+        context.lineTo(x2,y2)
+        context.closePath()
+        context.stroke()
+    }
+
+</script>
 </body>
 
 </html>
