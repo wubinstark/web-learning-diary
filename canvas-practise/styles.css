@@ -1,4 +1,28 @@
+body{
+    margin: 0px;
+}
 body #can{
-    background-color: aqua;
-    
+    background-color: antiquewhite;
+    display:block ;
+}
+
+body .action #rubber{
+    position: fixed;
+    left: 40px;
+    bottom: 40px;
+}
+
+.action #brush{
+    display: none;
+}
+
+.actionx #brush{
+    display: inline-block;
+    position: fixed;
+    left: 40px;
+    bottom:40px
+}
+
+.actionx #rubber{
+    display: none;
 }
