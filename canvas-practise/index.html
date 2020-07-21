@@ -6,15 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>canvas</title>
     <link rel="stylesheet" href="./styles.css">
+    <script src="//at.alicdn.com/t/font_1958486_a6ufj988u8u.js"></script>
 </head>
 
 <body>
+
 <canvas id="can"></canvas>
 <div id="action" class="action">
+    <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-xxx"></use>
+        <use xlink:href="#icon-xxx"></use>
+    </svg>
     <button id="rubber"></button>
     <button id="brush"></button>
-</div>
 
+</div>
 
 
 <script>
@@ -37,12 +43,11 @@
         painting = true
         var x = mousedown.clientX
         var y = mousedown.clientY
-        if (rubberEnable){
-            context.clearRect(x,y,10,10)
-        }
-        else {
+        if (rubberEnable) {
+            context.clearRect(x, y, 10, 10)
+        } else {
             lastPoint = {"x": x, "y": y}
-            drawcircle(x,y,3)
+            drawcircle(x, y, 3)
         }
         console.log(lastPoint)
 
@@ -54,13 +59,13 @@
         var y = mousemove.clientY
         newPoint = {"x": x, "y": y}
         if (painting) {
-            if (rubberEnable){
-                context.clearRect(x,y,10,10)
-            }else {
+            if (rubberEnable) {
+                context.clearRect(x, y, 10, 10)
+            } else {
                 connectPoint(lastPoint["x"], lastPoint["y"], newPoint["x"], newPoint["y"])
                 lastPoint = newPoint
 
-                drawcircle(x,y,3)
+                drawcircle(x, y, 3)
             }
         }
 
@@ -71,6 +76,7 @@
         console.log('over')
 
     }
+
     //画圆
     function drawcircle(x, y, radius) {
         context.beginPath()
@@ -78,12 +84,13 @@
         context.fill()
 
     }
+
     // 链接两点
-    function connectPoint(x1,y1,x2,y2) {
+    function connectPoint(x1, y1, x2, y2) {
         context.beginPath()
         context.lineWidth = 6
-        context.moveTo(x1,y1)
-        context.lineTo(x2,y2)
+        context.moveTo(x1, y1)
+        context.lineTo(x2, y2)
         context.closePath()
         context.stroke()
 
