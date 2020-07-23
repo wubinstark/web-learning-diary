@@ -40,51 +40,70 @@
 
     context.strokeStyle = 'green'
 
-    if ()
-    // 手指点击
 
-    // 手指滑动
-    // 手指离开屏幕
-
-
-    //按下鼠标
-    document.onmousedown = function (mousedown) {
-        painting = true
-        var x = mousedown.clientX
-        var y = mousedown.clientY
-        if (rubberEnable) {
-            context.clearRect(x, y, 10, 10)
-        } else {
-            lastPoint = {"x": x, "y": y}
-            drawcircle(x, y, 3)
-        }
-        console.log(lastPoint)
-
-    }
-    // 移动鼠标
-    document.onmousemove = function (mousemove) {
-        let newPoint;
-        var x = mousemove.clientX
-        var y = mousemove.clientY
-        newPoint = {"x": x, "y": y}
-        if (painting) {
+    if (document.body.ontouchstart != undefined) {
+        //按下鼠标
+        document.onmousedown = function (mousedown) {
+            painting = true
+            var x = mousedown.clientX
+            var y = mousedown.clientY
             if (rubberEnable) {
                 context.clearRect(x, y, 10, 10)
             } else {
-                connectPoint(lastPoint["x"], lastPoint["y"], newPoint["x"], newPoint["y"])
-                lastPoint = newPoint
+                lastPoint = {"x": x, "y": y}
+                drawcircle(x, y, 3)
+            }
 
+        }
+        // 移动鼠标
+        document.onmousemove = function (mousemove) {
+            let newPoint;
+            var x = mousemove.clientX
+            var y = mousemove.clientY
+            newPoint = {"x": x, "y": y}
+            if (painting) {
+                if (rubberEnable) {
+                    context.clearRect(x, y, 10, 10)
+                } else {
+                    connectPoint(lastPoint["x"], lastPoint["y"], newPoint["x"], newPoint["y"])
+                    lastPoint = newPoint
+
+                    drawcircle(x, y, 3)
+                }
+            }
+
+        }
+        // 松开鼠标
+        document.onmouseup = function (mouseup) {
+            painting = false
+            console.log('over')
+
+        }
+    } else {
+        // 手指点击
+        document.ontouchstart = function (touchstart) {
+            painting = true
+            var x = mousedown.clientX
+            var y = mousedown.clientY
+            if (rubberEnable) {
+                context.clearRect(x, y, 10, 10)
+            } else {
+                lastPoint = {"x": x, "y": y}
                 drawcircle(x, y, 3)
             }
         }
 
-    }
-    // 松开鼠标
-    document.onmouseup = function (mouseup) {
-        painting = false
-        console.log('over')
+        // 手指滑动
+        document.ontouchmove = function (touchmove) {
+            console.log('手指移动')
+        }
+        // 手指离开屏幕
+        document.ontouchend = function (touchend) {
+            console.log('手指离开了屏幕')
+        }
 
     }
+
 
     //画圆
     function drawcircle(x, y, radius) {
