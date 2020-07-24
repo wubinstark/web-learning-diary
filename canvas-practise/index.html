@@ -95,11 +95,24 @@
 
         // 手指滑动
         document.ontouchmove = function (touchmove) {
-            console.log('手指移动')
+            let newPoint;
+            var x = mousemove.clientX
+            var y = mousemove.clientY
+            newPoint = {"x": x, "y": y}
+            if (painting) {
+                if (rubberEnable) {
+                    context.clearRect(x, y, 10, 10)
+                } else {
+                    connectPoint(lastPoint["x"], lastPoint["y"], newPoint["x"], newPoint["y"])
+                    lastPoint = newPoint
+
+                    drawcircle(x, y, 3)
+                }
+            }
         }
         // 手指离开屏幕
         document.ontouchend = function (touchend) {
-            console.log('手指离开了屏幕')
+            painting = false
         }
 
     }
