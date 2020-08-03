@@ -41,6 +41,7 @@
     context.strokeStyle = 'green'
 
     // 检测用户设备是否是触屏设备
+    // 利用body.ontouchstart
     if (document.body.ontouchstart != undefined) {
         //按下鼠标
         document.onmousedown = function (mousedown) {
