@@ -40,8 +40,7 @@
 
     context.strokeStyle = 'green'
 
-    // 检测用户设备是否是触屏设备
-    // 利用body.ontouchstart
+    // 检测用户设备是否是触屏设备(特性检测)
     if (document.body.ontouchstart != undefined) {
         //按下鼠标
         document.onmousedown = function (mousedown) {
@@ -57,7 +56,6 @@
 
         }
         // 移动鼠标(0726)
-        // test
         document.onmousemove = function (mousemove) {
             let newPoint;
             var x = mousemove.clientX
